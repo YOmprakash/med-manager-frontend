@@ -1,6 +1,8 @@
 import { useState } from 'react'
-import {  Heart } from 'lucide-react';
-
+import {   Heart } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { toast } from 'react-toastify'
 export default function AuthPage() {
   const [mode, setMode] = useState('login') 
 
@@ -20,7 +22,7 @@ export default function AuthPage() {
         {/* Tabs */}
         <div className="flex border-b border-gray-200 mb-6">
           <button
-            className={`flex-1 py-2 text-center font-medium ${
+            className={`flex-1 py-2 cursor-pointer text-center font-medium ${
               mode === 'login'
                 ? 'text-black border-b-4 border-blue-500'
                 : 'text-gray-500'
@@ -30,7 +32,7 @@ export default function AuthPage() {
             Login
           </button>
           <button
-            className={`flex-1 py-2 text-center font-medium ${
+            className={`flex-1 py-2 cursor-pointer text-center font-medium ${
               mode === 'signup'
                 ? 'text-black border-b-4 border-green-400'
                 : 'text-gray-500'
@@ -41,7 +43,6 @@ export default function AuthPage() {
           </button>
         </div>
 
-        {/* Forms */}
         {mode === 'login' ? <LoginForm /> : <SignupForm />}
       </div>
     </div>
@@ -49,12 +50,32 @@ export default function AuthPage() {
 }
 
 function LoginForm() {
+  const navigate = useNavigate()
   const [form, setForm] = useState({ email: '', password: '' })
 
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log('Login:', form)
-    // TODO: integrate real login
+
+  try{
+
+    const {email, password} = form
+    if (!email || !password) {
+      throw new Error('All fields are required')
+    }
+    const response = await axios.post('http://localhost:5000/api/auth/login', form);
+    
+    if(response.status === 200){
+      toast.success('Login successful!')
+      navigate('/role-selection')
+       setForm({ email: '', password: '' })
+    }
+  }catch(e){
+
+      toast.error('Invalid email or password. Please try again.')
+      return
+
+  }
+   
   }
 
   return (
@@ -98,11 +119,29 @@ function LoginForm() {
 
 function SignupForm() {
   const [form, setForm] = useState({ name: '', email: '', password: '' })
-
-  const handleSubmit = e => {
+ const navigate = useNavigate()
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log('SignUp:', form)
-    // TODO: integrate real signup
+    try{
+
+      const { name, email, password } = form
+      if (!name || !email || !password) {
+        throw new Error('All fields are required')
+      }
+      const response = await axios.post('http://localhost:5000/api/auth/signup', form);
+      const data = await response.data;
+      console.log('Signup response:', data)
+      if(response.status ===201){
+
+        toast.success('Account created successfully! Please log in.')
+        setForm({ name: '', email: '', password: '' })
+      }
+     
+    }catch(e){
+      console.error('Error during signup:', e)
+      // Handle error (e.g., show notification)
+      return
+    }
   }
 
   return (
