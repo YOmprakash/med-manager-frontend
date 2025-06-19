@@ -1,6 +1,6 @@
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import AuthPage from './pages/authPage.';
+import AuthPage from './pages/authPage';
 import RoleSelection from './pages/RoleSelection';
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
