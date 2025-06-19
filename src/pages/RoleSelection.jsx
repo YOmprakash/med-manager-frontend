@@ -1,6 +1,12 @@
 import { Heart, User, Users } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
-export default function RoleSelection() {
+const RoleSelection = () =>{
+  const navigate = useNavigate()
+
+  const handleNaviateDashboard = () => {
+    navigate('/dashboard')
+  }
  
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-tr from-blue-50 to-green-50 px-4">
@@ -34,7 +40,7 @@ export default function RoleSelection() {
           </ul>
           <button
             className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition"
-            
+            onClick={handleNaviateDashboard}
           >
             Continue as Patient
           </button>
@@ -72,3 +78,5 @@ export default function RoleSelection() {
     </div>
   )
 }
+
+export default RoleSelection
