@@ -1,30 +1,41 @@
 
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
 import { toast } from 'react-toastify'
 import Input from './Input'
-
+import { useMutation } from '@tanstack/react-query'
+import { Login } from '../api'
 const LoginForm = () => {
   const [form, setForm] = useState({ email: '', password: '' })
   const navigate = useNavigate()
+ const mutation = useMutation({
+    mutationFn:Login ,
+    onSuccess: () => {
+      toast.success('Login successful!')
+      navigate('/role-selection')
+    },
+    onError: () => {
+      toast.error('Invalid email or password. Please try again.')
+    },
+  })
+
+
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    
-    try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', form)
-      if (response.status === 200) {
-        toast.success('Login successful!')
-        navigate('/role-selection')
-      }
-    } catch (err) {
-      toast.error('Invalid email or password. Please try again.')
+    const { email, password } = form
+    if (!email || !password) {
+      toast.error('All fields are required')
+      return
     }
+
+    mutation.mutate(form)
+
   }
 
   return (
@@ -37,9 +48,10 @@ const LoginForm = () => {
 
       <button
         type="submit"
+        disabled={mutation.isLoading}
         className="w-full py-3 rounded-lg bg-gradient-to-r from-blue-500 to-green-400 text-white font-medium hover:opacity-90 transition"
       >
-        Sign In
+        {mutation.isLoading ? 'Signing in...' : 'Sign In'}
       </button>
     </form>
   )
