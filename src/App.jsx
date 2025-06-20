@@ -13,7 +13,6 @@ const App = () => {
           <Route path="/role-selection" element={<RoleSelection />} />
         </Routes>
       </BrowserRouter>
-      
     <Toaster />
     </>
   )
