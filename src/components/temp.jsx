@@ -28,34 +28,34 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto p-6">
+    <div className="min-h-screen ">
+      <div className="max-w-7xl mx-auto ">
         {/* Navigation Tabs */}
-        <div className="border-b border-gray-200">
-          <nav className="flex space-x-8">
+        <div className="mt-4">
+          <div className="grid grid-cols-4 w-full space-x-8">
             {tabs.map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${
+                className={`py-3 px-1  font-medium text-sm transition-colors duration-200 ${
                   activeTab === tab
-                    ? "border-blue-500 text-blue-600"
+                    ? " text-blue-600 bg-green-200 shadow-box"
                     : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
                 }`}
               >
                 {tab}
               </button>
             ))}
-          </nav>
+          </div>
         </div>
         
         {/* Overview Tab Content */}
         {activeTab === "Overview" && (
-          <div className="mt-8 space-y-8">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="mt-8 w-full space-y-8">
+            <div className="grid grid-cols-2 gap-8 w-full">
               {/* Today's Status */}
-              <div className="lg:col-span-2">
-                <div className="bg-white rounded-lg shadow-sm p-6">
+              <div className="">
+                <div className="bg-white rounded-lg shadow-sm h-full p-6">
                   <div className="flex items-center mb-6">
                     <Calendar className="h-6 w-6 text-blue-600 mr-3" />
                     <h2 className="text-xl font-semibold text-gray-800">Today's Status</h2>

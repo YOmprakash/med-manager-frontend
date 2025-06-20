@@ -10,28 +10,36 @@ const stats = [
 
 const CaretakerDashboardCard = () => {
   return (
-    <div className="bg-gradient-to-r from-green-400 via-teal-400 to-blue-500 text-white rounded-2xl p-6 shadow-md">
-      {/* Header */}
-      <div className="flex items-center space-x-4 mb-6">
-        <div className="bg-white/20 p-3 rounded-xl">
-          <Users className="text-white w-6 h-6" />
-        </div>
-        <div>
-          <h2 className="text-2xl font-bold">Caretaker Dashboard</h2>
-          <p className="text-sm opacity-90">Monitoring Eleanor Thompson&apos;s medication adherence</p>
-        </div>
-      </div>
-
-      {/* Stats */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        {stats.map((item, index) => (
-          <div key={index} className="bg-white/10 rounded-xl p-4 text-center">
-            <div className="text-xl font-semibold">{item.value}</div>
-            <div className="text-sm opacity-80">{item.label}</div>
+     <div className="bg-gradient-to-r from-green-500 to-blue-500 rounded-2xl p-8 text-white">
+        <div className="flex items-center gap-4 mb-6">
+          <div className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center">
+            <Users className="w-8 h-8" />
           </div>
-        ))}
+          <div>
+            <h2 className="text-3xl font-bold">Caretaker Dashboard</h2>
+            <p className="text-white/90 text-lg">Monitoring 's medication adherence</p>
+          </div>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+            <div className="text-2xl font-bold">0%</div>
+            <div className="text-white/80">Adherence Rate</div>
+          </div>
+          <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+            <div className="text-2xl font-bold">0</div>
+            <div className="text-white/80">Current Streak</div>
+          </div>
+          <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+            <div className="text-2xl font-bold">0</div>
+            <div className="text-white/80">Missed This Month</div>
+          </div>
+          <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+            <div className="text-2xl font-bold">0</div>
+            <div className="text-white/80">Taken This Week</div>
+          </div>
+        </div>
       </div>
-    </div>
   )
 }
 
