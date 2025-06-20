@@ -1,9 +1,9 @@
-// components/Navbar.jsx
+
 import { User } from 'lucide-react'
 
 const Navbar = ({ currentRole = 'Caretaker', onSwitchRole }) => {
   return (
-    <nav className="bg-white shadow px-4 py-3 flex items-center justify-between">
+    <nav className="bg-white  shadow w-full md:px-[10%] py-3 flex items-center justify-between">
       {/* Left: Logo + Name */}
       <div className="flex items-center space-x-3">
         <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-green-500 flex items-center justify-center text-white font-semibold text-lg">

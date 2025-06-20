@@ -24,7 +24,7 @@ PatientView = () => {
     const days = [];
     const today = new Date();
     
-    for (let i = 0; i < 42; i++) {
+    for (let i = 0; i < 35; i++) {
       const date = new Date(startDate);
       date.setDate(startDate.getDate() + i);
       
@@ -73,9 +73,9 @@ PatientView = () => {
   };
 
   return (
-    <div className="min-h-screen max-w-7xl mx-auto  bg-gray-50">
+    <div className="min-h-screen w-full md:max-w-6xl mx-auto mt-8 pb-10 ">
       {/* Header Section with Gradient */}
-      <div className="bg-gradient-to-r from-blue-500 via-blue-400 to-green-400 rounded-b-3xl p-6 text-white">
+      <div className="bg-gradient-to-r from-blue-500 via-blue-400 to-green-400 rounded-3xl p-8 text-white">
         {/* User Greeting */}
         <div className="flex items-center gap-3 mb-6">
           <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
@@ -105,9 +105,9 @@ PatientView = () => {
       </div>
 
       {/* Main Content */}
-      <div className="p-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="pt-6 flex items-center justify-between w-full  gap-6">
         {/* Today's Medication */}
-        <div className="bg-white rounded-2xl p-6 shadow-sm">
+        <div className="bg-white rounded-2xl w-full max-w-2/3 p-6 shadow-sm">
           <div className="flex items-center gap-2 mb-6">
             <Calendar className="w-5 h-5 text-blue-500" />
             <h2 className="text-xl font-semibold">Today's Medication</h2>
@@ -126,7 +126,7 @@ PatientView = () => {
             </div>
 
             {/* Photo Proof Section */}
-            <div className="border-2 border-dashed border-gray-200 rounded-xl p-8 text-center">
+            <div className="border-2 border-dashed border-gray-200 rounded-xl flex items-center justify-center flex-col p-8 text-center">
               <div className="w-16 h-16 bg-gray-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                 <Camera className="w-8 h-8 text-gray-400" />
               </div>
@@ -147,7 +147,7 @@ PatientView = () => {
             {/* Mark as Taken button */}
             <button 
               onClick={handleMarkAsTaken}
-              className="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-xl font-medium"
+              className="w-full bg-green-600 flex items-center justify-center hover:bg-green-600 text-white py-2 rounded-md font-medium"
               disabled={medicationTaken}
             >
               <Check className="w-5 h-5 mr-2" />
@@ -157,8 +157,8 @@ PatientView = () => {
         </div>
 
         {/* Medication Calendar */}
-        <div className="bg-white rounded-2xl p-6 shadow-sm">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-white rounded-2xl p-6 w-full max-w-1/3 shadow-sm">
+          <div className="flex items-center justify-center flex-col gap-5 mb-6">
             <h2 className="text-xl font-semibold">Medication Calendar</h2>
             <div className="flex items-center gap-2">
               <button variant="ghost" size="sm" onClick={prevMonth}>
