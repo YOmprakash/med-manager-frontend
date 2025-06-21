@@ -24,3 +24,8 @@ export const addMedication = async (formData) => {
   const res = await Axios.post('/med/medications/add', formData);
   return res.data;
 };
+
+export const getAllMedications = async () => {
+  const res = await Axios.get('/med/medications/list');
+  return res.data;
+};

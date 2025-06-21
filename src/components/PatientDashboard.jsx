@@ -5,6 +5,7 @@ import { Calendar as CalendarIcon, Check } from "lucide-react";
 import WelcomeStats from "./WelcomeStats";
 import MedicationTracker from "./MedicationTracker";
 import CustomCalendar from "./CustomCalendar";
+import MedicationList from "./MedicationsList";
 
 const PatientDashboard = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -53,6 +54,7 @@ const PatientDashboard = () => {
                   : `Medication for ${format(selectedDate, "MMMM d, yyyy")}`}
               </h3>
             </div>
+             <MedicationList />
             <div className="p-6 pt-0 bg-white">
               <MedicationTracker
                 date={selectedDateStr}
