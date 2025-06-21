@@ -7,6 +7,7 @@ import Activity from "./Activity";
 import CalendarView from "./CalendarView";
 import NotificationSettings from "./Notifications";
 import Overview from "./Overview";
+import AddMedicationForm from "./AddMedicationForm";
 
 export default function CaretakerDashboard() {
   const [activeTab, setActiveTab] = useState("overview");
@@ -60,6 +61,11 @@ export default function CaretakerDashboard() {
         missed={missedDoses}
         takenThisWeek={recentActivity.filter(a => a.taken).length}
       />
+
+      <div className="w-full md:max-w-2xl">
+        <AddMedicationForm patientId={2} />
+      </div>
+
 
       {/* Tabs and Content */}
       <div className="space-y-6">
