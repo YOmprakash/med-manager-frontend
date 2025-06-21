@@ -4,7 +4,7 @@ import { Heart } from 'lucide-react'
 import LoginForm from '../components/LoginForm'
 import SignupForm from '../components/SignupForm'
 
-const AuthPage = () => {
+const AuthPage = ({onLogin }) => {
   const [mode, setMode] = useState('login')
 
   return (
@@ -37,7 +37,7 @@ const AuthPage = () => {
           ))}
         </div>
 
-        {mode === 'login' ? <LoginForm /> : <SignupForm setMode={setMode} />}
+        {mode === 'login' ? <LoginForm onLogin={onLogin} /> : <SignupForm setMode={setMode} />}
       </div>
     </div>
   )

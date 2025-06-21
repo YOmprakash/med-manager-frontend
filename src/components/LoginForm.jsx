@@ -5,13 +5,14 @@ import { toast } from 'react-toastify'
 import Input from './Input'
 import { useMutation } from '@tanstack/react-query'
 import { Login } from '../api'
-const LoginForm = () => {
+const LoginForm = ({onLogin}) => {
   const [form, setForm] = useState({ email: '', password: '' })
   const navigate = useNavigate()
  const mutation = useMutation({
     mutationFn:Login ,
     onSuccess: () => {
       toast.success('Login successful!')
+      onLogin() // Call the onLogin prop to update authentication state
       navigate('/role-selection')
     },
     onError: () => {

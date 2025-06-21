@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const Axios = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: 'https://med-manager-backend.onrender.com/api',
 });
 
 export default Axios;

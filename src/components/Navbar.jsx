@@ -1,7 +1,7 @@
 
 import { Users, User } from "lucide-react";
 
-const Header = ({ userRole, toggleUserRole }) => {
+const Header = ({ userRole, toggleUserRole, onLogout }) => {
   return (
     <header className="bg-white/80 backdrop-blur-sm p-4">
       <div className="max-w-6xl mx-auto flex justify-between items-center">
@@ -16,7 +16,16 @@ const Header = ({ userRole, toggleUserRole }) => {
             </p>
           </div>
         </div>
+        <div className="flex items-center gap-4">
 
+       
+
+<button
+        onClick={onLogout}
+        className="bg-red-500 text-white px-4 py-2 rounded"
+      >
+        Logout
+      </button>
         <button
           onClick={toggleUserRole}
           className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100 transition"
@@ -24,6 +33,7 @@ const Header = ({ userRole, toggleUserRole }) => {
           {userRole === "patient" ? <Users className="w-4 h-4" /> : <User className="w-4 h-4" />}
           Switch to {userRole === "patient" ? "Caretaker" : "Patient"}
         </button>
+         </div>
       </div>
     </header>
   );
