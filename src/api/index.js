@@ -12,7 +12,7 @@ export const Login = async (formData) => {
 }
 
 export const markAsTaken = async (medicationId, date, image) => {
-  const res = await Axios.post('/med/medications/taken', {
+  const res = await Axios.post('/medTaken/medications/taken', {
     medication_id: medicationId,
     date,
     proof_image: image || null,

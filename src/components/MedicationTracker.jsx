@@ -1,7 +1,9 @@
 import { useState, useRef } from "react";
 import { format } from "date-fns";
 import { Check, Clock, Camera, Image } from "lucide-react";
-
+import { useMutation } from "@tanstack/react-query";
+import { markAsTaken } from "../api";
+import { toast } from 'react-toastify'
 const MedicationTracker = ({ date, isTaken, onMarkTaken, isToday }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
@@ -12,6 +14,20 @@ const MedicationTracker = ({ date, isTaken, onMarkTaken, isToday }) => {
     time: "8:00 AM",
     description: "Complete set of daily tablets",
   };
+
+  const mutation = useMutation({
+    mutationFn: ({ date, image }) => markAsTaken(1, date, image), // Replace `1` with dynamic medication ID if needed
+    onSuccess: () => {
+      onMarkTaken(date); // ✅ Trigger calendar update
+      setSelectedImage(null);
+      setImagePreview(null);
+      toast.success("Medication marked as taken successfully!");
+    },
+    onError: (error) => {
+      console.error("❌ Failed to mark as taken:", error);
+      toast.error("Failed to mark medication as taken. Please try again.");
+    },
+  });
 
   const handleImageSelect = (event) => {
     const file = event.target.files?.[0];
@@ -24,9 +40,16 @@ const MedicationTracker = ({ date, isTaken, onMarkTaken, isToday }) => {
   };
 
   const handleMedicationMarkTaken = () => {
-    onMarkTaken(date, selectedImage || undefined);
-    setSelectedImage(null);
-    setImagePreview(null);
+    if (selectedImage) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const base64Image = e.target.result;
+        mutation.mutate({ date, image: base64Image });
+      };
+      reader.readAsDataURL(selectedImage);
+    } else {
+      mutation.mutate({ date, image: null });
+    }
   };
 
   if (isTaken) {
@@ -45,31 +68,13 @@ const MedicationTracker = ({ date, isTaken, onMarkTaken, isToday }) => {
             </p>
           </div>
         </div>
-
-        <div className="rounded-lg border border-green-200 bg-green-50/50">
-          <div className="flex items-center justify-between p-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
-                <Check className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <h4 className="font-medium text-green-800">{dailyMedication.name}</h4>
-                <p className="text-sm text-green-600">{dailyMedication.description}</p>
-              </div>
-            </div>
-            <div className="inline-flex items-center bg-green-100 text-green-800 rounded-full px-2.5 py-0.5 text-xs font-semibold">
-              <Clock className="w-3 h-3 mr-1" />
-              {dailyMedication.time}
-            </div>
-          </div>
-        </div>
       </div>
     );
   }
 
   return (
     <div className="space-y-6">
-      <div className="rounded-lg  shadow-sm">
+      <div className="rounded-lg shadow-sm">
         <div className="flex items-center justify-between p-4">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
@@ -87,6 +92,7 @@ const MedicationTracker = ({ date, isTaken, onMarkTaken, isToday }) => {
         </div>
       </div>
 
+      {/* Image upload */}
       <div className="rounded-lg border-dashed border-2 border-gray-300 p-6 text-center">
         <Image className="w-12 h-12 text-gray-500 mx-auto mb-4" />
         <h3 className="font-medium mb-2">Add Proof Photo (Optional)</h3>
@@ -126,10 +132,10 @@ const MedicationTracker = ({ date, isTaken, onMarkTaken, isToday }) => {
       <button
         onClick={handleMedicationMarkTaken}
         className="w-full bg-green-600 hover:bg-green-700 text-white text-lg py-3 rounded-md flex items-center justify-center disabled:opacity-50"
-        disabled={!isToday}
+        disabled={!isToday || mutation.isLoading}
       >
         <Check className="w-5 h-5 mr-2" />
-        {isToday ? "Mark as Taken" : "Cannot mark future dates"}
+        {isToday ? (mutation.isLoading ? "Submitting..." : "Mark as Taken") : "Cannot mark future dates"}
       </button>
 
       {!isToday && (
