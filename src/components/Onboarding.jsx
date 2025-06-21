@@ -21,7 +21,7 @@ const Onboarding = ({ onComplete }) => {
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {/* Patient Card */}
           <div
-            className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-blue-200 rounded-xl p-6 bg-white cursor-pointer"
+            className="group hover:shadow-xl border border-gray-200 transition-all duration-300  hover:border-blue-200 rounded-xl p-6 bg-white cursor-pointer"
           >
             <div className="text-center mb-4">
               <div className="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-200 transition-colors">
@@ -53,7 +53,7 @@ const Onboarding = ({ onComplete }) => {
               </ul>
               <button
                 onClick={() => onComplete("patient")}
-                className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg text-lg"
+                className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg text-lg"
               >
                 Continue as Patient
               </button>
@@ -62,7 +62,7 @@ const Onboarding = ({ onComplete }) => {
 
           {/* Caretaker Card */}
           <div
-            className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-green-200 rounded-xl p-6 bg-white cursor-pointer"
+            className="group hover:shadow-xl transition-all duration-300 border border-gray-200 hover:border-green-200 rounded-xl p-6 bg-white cursor-pointer"
           >
             <div className="text-center mb-4">
               <div className="w-16 h-16 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-green-200 transition-colors">
@@ -94,7 +94,7 @@ const Onboarding = ({ onComplete }) => {
               </ul>
               <button
                 onClick={() => onComplete("caretaker")}
-                className="w-full mt-6 bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg text-lg"
+                className="w-full mt-6 bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg text-lg"
               >
                 Continue as Caretaker
               </button>

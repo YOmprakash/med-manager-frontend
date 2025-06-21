@@ -36,7 +36,7 @@ const CustomCalendar = ({ selected, onSelect, modifiersClassNames, components, t
       const isSelected = format(selected, "yyyy-MM-dd") === dateStr;
 
       const className = [
-        "w-10 h-10 flex items-center justify-center rounded-full text-sm cursor-pointer",
+        "w-10 h-10 flex items-center justify-center rounded-sm text-sm cursor-pointer",
         isSelected ? modifiersClassNames?.selected || "bg-blue-600 text-white" : "hover:bg-gray-100",
         getDayClassName(date),
       ].join(" ");
