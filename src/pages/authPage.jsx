@@ -8,8 +8,8 @@ const AuthPage = ({onLogin }) => {
   const [mode, setMode] = useState('login')
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-50 to-green-50 p-4">
-      <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-green-500 p-4">
+      <div className="w-full max-w-md bg-white border border-gray-200  rounded-xl shadow-box p-8">
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-green-500 rounded-full mb-4">
             <Heart className="w-8 h-8 text-white" />
