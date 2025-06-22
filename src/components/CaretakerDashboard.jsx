@@ -12,19 +12,16 @@ import AddMedicationForm from "./AddMedicationForm";
 export default function CaretakerDashboard() {
   const [activeTab, setActiveTab] = useState("overview");
 
-  // Mock patient data
   const patientName = "Eleanor Thompson";
   const adherenceRate = 85;
   const currentStreak = 5;
   const missedDoses = 3;
 
-  // Taken dates set for calendar and status
   const takenDates = new Set([
     "2024-06-10", "2024-06-09", "2024-06-07", "2024-06-06",
     "2024-06-05", "2024-06-04", "2024-06-02", "2024-06-01"
   ]);
 
-  // Recent activity array
   const recentActivity = [
     { date: "2024-06-10", taken: true, time: "8:30 AM", hasPhoto: true },
     { date: "2024-06-09", taken: true, time: "8:15 AM", hasPhoto: false },
@@ -33,7 +30,7 @@ export default function CaretakerDashboard() {
     { date: "2024-06-06", taken: true, time: "8:20 AM", hasPhoto: false },
   ];
 
-  // Today's medication status
+
   const todayStr = format(new Date(), "yyyy-MM-dd");
   const dailyMedication = {
     name: "Daily Medication Set",
@@ -41,7 +38,7 @@ export default function CaretakerDashboard() {
     status: takenDates.has(todayStr) ? "completed" : "pending"
   };
 
-  // Handlers
+
   const sendReminderEmail = () => {
     alert(`Reminder email sent to ${patientName}`);
   };
@@ -53,7 +50,6 @@ export default function CaretakerDashboard() {
 
   return (
     <div className="space-y-6">
-      {/* Header Stats */}
       <HeaderStats
         name={patientName}
         adherenceRate={adherenceRate}

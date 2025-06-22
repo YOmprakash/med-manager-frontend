@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Users } from "lucide-react";
 
 export default function HeaderStats({ name, adherenceRate, streak, missed, takenThisWeek }) {

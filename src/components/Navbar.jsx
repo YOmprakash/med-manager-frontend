@@ -18,22 +18,22 @@ const Header = ({ userRole, toggleUserRole, onLogout }) => {
         </div>
         <div className="flex items-center gap-4">
 
-       
 
-<button
-        onClick={onLogout}
-        className="bg-red-500 text-white px-4 py-2 rounded"
-      >
-        Logout
-      </button>
-        <button
-          onClick={toggleUserRole}
-          className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100 transition"
-        >
-          {userRole === "patient" ? <Users className="w-4 h-4" /> : <User className="w-4 h-4" />}
-          Switch to {userRole === "patient" ? "Caretaker" : "Patient"}
-        </button>
-         </div>
+
+          <button
+            onClick={onLogout}
+            className="bg-red-500 text-white px-4 py-2 rounded"
+          >
+            Logout
+          </button>
+          <button
+            onClick={toggleUserRole}
+            className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100 transition"
+          >
+            {userRole === "patient" ? <Users className="w-4 h-4" /> : <User className="w-4 h-4" />}
+            Switch to {userRole === "patient" ? "Caretaker" : "Patient"}
+          </button>
+        </div>
       </div>
     </header>
   );

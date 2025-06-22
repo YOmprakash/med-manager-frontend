@@ -5,7 +5,6 @@ const CalendarView = () => {
   const [currentDate, setCurrentDate] = useState(new Date(2025, 5, 30)); // June 30, 2025
   const [selectedDate, setSelectedDate] = useState(30);
 
-  // Sample medication data - you can modify this later
   const medicationData = {
     taken: [9, 10, 11, 12, 15, 16, 17, 18],
     missed: [1, 2, 3, 4, 5, 6, 7, 8, 13, 14]
@@ -55,18 +54,15 @@ const CalendarView = () => {
     const firstDay = getFirstDayOfMonth(currentDate);
     const days = [];
 
-    // Add empty cells for days before the first day of the month
     for (let i = 0; i < firstDay; i++) {
       days.push(null);
     }
 
-    // Add days of the month
     for (let day = 1; day <= daysInMonth; day++) {
       days.push(day);
     }
 
-    // Add empty cells to complete the grid (next month's days)
-    const remainingCells = 42 - days.length; // 6 rows × 7 days = 42 cells
+    const remainingCells = 42 - days.length; 
     for (let i = 1; i <= remainingCells && i <= 12; i++) {
       days.push(`next-${i}`);
     }

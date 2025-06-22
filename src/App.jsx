@@ -1,6 +1,6 @@
 
 import { BrowserRouter, Routes, Route,Navigate  } from 'react-router-dom';
-import AuthPage from './pages/authPage';
+import AuthPage from './pages/AuthPage';
 import RoleSelection from './pages/RoleSelection';
 import Toaster from './components/Toaster';
 import { useState } from 'react';

@@ -18,13 +18,12 @@ const MedicationTracker = ({ date, isTaken, onMarkTaken, isToday }) => {
   const mutation = useMutation({
     mutationFn: ({ date, image }) => markAsTaken(1, date, image), // Replace `1` with dynamic medication ID if needed
     onSuccess: () => {
-      onMarkTaken(date); // ✅ Trigger calendar update
+      onMarkTaken(date); 
       setSelectedImage(null);
       setImagePreview(null);
       toast.success("Medication marked as taken successfully!");
     },
     onError: (error) => {
-      console.error("❌ Failed to mark as taken:", error);
       toast.error("Failed to mark medication as taken. Please try again.");
     },
   });

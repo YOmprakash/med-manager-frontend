@@ -6,6 +6,7 @@ import WelcomeStats from "./WelcomeStats";
 import MedicationTracker from "./MedicationTracker";
 import CustomCalendar from "./CustomCalendar";
 import MedicationList from "./MedicationsList";
+import Legend from "./Legend";
 
 const PatientDashboard = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -19,7 +20,6 @@ const PatientDashboard = () => {
 
   const handleMarkTaken = (date, imageFile) => {
     setTakenDates((prev) => new Set(prev).add(date));
-    console.log("Medication marked as taken for:", date);
     if (imageFile) console.log("Proof image uploaded:", imageFile.name);
   };
 
@@ -35,7 +35,6 @@ const PatientDashboard = () => {
 
   return (
     <div className="space-y-6">
-      {/* Top Greeting + Stats */}
       <WelcomeStats
         streak={getStreakCount()}
         isTodayTaken={takenDates.has(todayStr)}
@@ -43,7 +42,6 @@ const PatientDashboard = () => {
       />
 
       <div className="grid lg:grid-cols-3 gap-6">
-        {/* Medication Card */}
         <div className="lg:col-span-2 bg-white ">
           <div className="rounded-lg  bg-card text-card-foreground shadow-sm h-full">
             <div className="flex flex-col space-y-1.5 p-6">
@@ -54,7 +52,7 @@ const PatientDashboard = () => {
                   : `Medication for ${format(selectedDate, "MMMM d, yyyy")}`}
               </h3>
             </div>
-             <MedicationList />
+            <MedicationList />
             <div className="p-6 pt-0 bg-white">
               <MedicationTracker
                 date={selectedDateStr}
@@ -104,12 +102,12 @@ const PatientDashboard = () => {
                 takenDates={takenDates}
               />
 
-              {/* Legend */}
               <div className="mt-4 space-y-2 text-sm">
                 <Legend color="green-500" label="Medication taken" />
                 <Legend color="red-400" label="Missed medication" />
                 <Legend color="blue-500" label="Today" />
               </div>
+
             </div>
           </div>
         </div>
@@ -118,11 +116,6 @@ const PatientDashboard = () => {
   );
 };
 
-const Legend = ({ color, label }) => (
-  <div className="flex items-center gap-2">
-    <div className={`w-3 h-3 bg-${color} rounded-full`}></div>
-    <span>{label}</span>
-  </div>
-);
+
 
 export default PatientDashboard;

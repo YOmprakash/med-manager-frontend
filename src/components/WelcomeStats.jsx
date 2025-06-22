@@ -1,7 +1,7 @@
 import { User } from "lucide-react";
+import StatCard from "./StatCard";
 
 const WelcomeStats = ({ streak, isTodayTaken, takenDates }) => {
-  const todayStr = new Date().toISOString().split("T")[0];
 
   const getGreeting = () => {
     const hour = new Date().getHours();
@@ -28,11 +28,6 @@ const WelcomeStats = ({ streak, isTodayTaken, takenDates }) => {
   );
 };
 
-const StatCard = ({ title, value }) => (
-  <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
-    <div className="text-2xl font-bold">{value}</div>
-    <div className="text-white/80">{title}</div>
-  </div>
-);
+
 
 export default WelcomeStats;

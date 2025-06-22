@@ -6,16 +6,17 @@ import { addMedication } from "../api";
 
 export default function AddMedicationForm({ patientId }) {
     const [form, setForm] = useState({ name: "", dosage: "", frequency: "" });
+    const [loading, setLoading] = useState(false);
 
-    // React Query mutation
     const mutation = useMutation({
         mutationFn: addMedication,
-
         onSuccess: () => {
+            setLoading(false);
             toast.success("Medication added successfully!");
             setForm({ name: "", dosage: "", frequency: "" });
         },
         onError: () => {
+            setLoading(false);
             toast.error("Failed to add medication.");
         },
     });
@@ -26,6 +27,7 @@ export default function AddMedicationForm({ patientId }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setLoading(true);
         mutation.mutate({ ...form, patient_id: patientId });
     };
 
@@ -66,10 +68,10 @@ export default function AddMedicationForm({ patientId }) {
 
             <button
                 type="submit"
-                disabled={mutation.isLoading}
+                disabled={loading}
                 className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
             >
-                {mutation.isLoading ? "Adding..." : "Add Medication"}
+                {loading ? "Adding..." : "Add Medication"}
             </button>
         </form>
     );

@@ -8,7 +8,7 @@ import { Login } from '../api'
 const LoginForm = ({ onLogin }) => {
   const [form, setForm] = useState({ email: '', password: '' })
   const navigate = useNavigate()
-const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const mutation = useMutation({
     mutationFn: Login,
     onSuccess: () => {
@@ -40,7 +40,6 @@ const [loading, setLoading] = useState(false);
 
   return (
     <>
-      {/* Full Screen Loading Overlay */}
       {loading && (
         <div className="fixed inset-0 bg-white/70 z-50 flex items-center justify-center">
           <div className="h-12 w-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>

@@ -15,7 +15,7 @@ const MedicationList = () => {
   if (!data || data.length === 0) return <p>No medications added yet.</p>;
 
   return (
-    <div className="bg-white rounded-lg p-6 shadow-sm border">
+    <div className="bg-white rounded-lg p-6  py-4">
       <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
         <Pill className="w-5 h-5 text-blue-600" />
         All Medications

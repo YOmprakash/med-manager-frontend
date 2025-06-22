@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Bell, Mail } from "lucide-react";
+import { useState } from "react";
+import { Bell } from "lucide-react";
 
 export default function NotificationSettings({ onSave }) {
   const [settings, setSettings] = useState({
@@ -32,14 +32,12 @@ export default function NotificationSettings({ onSave }) {
           </div>
           <button
             onClick={() => update("emailNotifications", !settings.emailNotifications)}
-            className={`h-6 w-11 rounded-full transition ${
-              settings.emailNotifications ? "bg-blue-600" : "bg-gray-200"
-            }`}
+            className={`h-6 w-11 rounded-full transition ${settings.emailNotifications ? "bg-blue-600" : "bg-gray-200"
+              }`}
           >
             <span
-              className={`block h-5 w-5 bg-white rounded-full transform transition ${
-                settings.emailNotifications ? "translate-x-5" : "translate-x-0"
-              }`}
+              className={`block h-5 w-5 bg-white rounded-full transform transition ${settings.emailNotifications ? "translate-x-5" : "translate-x-0"
+                }`}
             />
           </button>
         </div>
@@ -69,14 +67,12 @@ export default function NotificationSettings({ onSave }) {
             </div>
             <button
               onClick={() => update("missedMedNotification", !settings.missedMedNotification)}
-              className={`h-6 w-11 rounded-full transition ${
-                settings.missedMedNotification ? "bg-blue-600" : "bg-gray-200"
-              }`}
+              className={`h-6 w-11 rounded-full transition ${settings.missedMedNotification ? "bg-blue-600" : "bg-gray-200"
+                }`}
             >
               <span
-                className={`block h-5 w-5 bg-white rounded-full transform transition ${
-                  settings.missedMedNotification ? "translate-x-5" : "translate-x-0"
-                }`}
+                className={`block h-5 w-5 bg-white rounded-full transform transition ${settings.missedMedNotification ? "translate-x-5" : "translate-x-0"
+                  }`}
               />
             </button>
           </div>
@@ -90,8 +86,8 @@ export default function NotificationSettings({ onSave }) {
                   onChange={e => update("missedMedDelay", e.target.value)}
                   className="mt-1 w-full rounded-md border px-3 py-2"
                 >
-                  {["1","2","3","4","6"].map(h => (
-                    <option key={h} value={h}>{h} hour{h!=="1"?"s":""}</option>
+                  {["1", "2", "3", "4", "6"].map(h => (
+                    <option key={h} value={h}>{h} hour{h !== "1" ? "s" : ""}</option>
                   ))}
                 </select>
               </div>
