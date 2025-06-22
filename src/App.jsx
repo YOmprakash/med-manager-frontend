@@ -1,9 +1,10 @@
 
 import { BrowserRouter, Routes, Route,Navigate  } from 'react-router-dom';
-import AuthPage from './pages/AuthPage';
+
 import RoleSelection from './pages/RoleSelection';
 import Toaster from './components/Toaster';
 import { useState } from 'react';
+import AuthPage from './pages/AuthPage';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
